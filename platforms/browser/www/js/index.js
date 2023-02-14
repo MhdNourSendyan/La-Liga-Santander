@@ -31,7 +31,7 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getDatabase(app);
 let user = null;
-let clasificacion = null;
+let clasificacionEquipos = null;
 document.addEventListener("deviceready", onDeviceReady, false);
 // con google
 function onDeviceReady() {
@@ -48,17 +48,21 @@ function onDeviceReady() {
         // const credential = GoogleAuthProvider.credentialFromResult(result);
         // const token = credential.accessToken;
         const user_info = result.user;
-        console.log(user_info);
+        console.log("User info: ", user_info);
         user = user_info.email
           .slice(0, user_info.email.indexOf("@"))
           .replaceAll(".", "");
-        console.log(user);
         let name = user_info.displayName;
 
-        document.getElementById("page-login").classList.add("d-none");
+        document
+          .getElementById("page-login")
+          .children[0].classList.add("d-none");
+        document
+          .getElementById("page-login")
+          .children[1].classList.add("d-none");
 
         document.getElementById("page-main").classList.remove("d-none");
-        document.getElementById("page-main").classList.add("d-inline");
+        document.getElementById("page-main").classList.add("d-block");
         document.getElementById("page-main-welcome").innerHTML +=
           "Bienvenido " + name + "<br>";
         let root_ref = ref(db, "users/" + user);
@@ -67,8 +71,8 @@ function onDeviceReady() {
           usuario: user,
           email: user_info.email,
         });
-        clasificacion = ref(db, "Equipos/" + user);
-        getClasificacion(clasificacion);
+        clasificacionEquipos = ref(db, "/Equipos/");
+        getClasificacionEquipos(clasificacionEquipos);
       })
       .catch((error) => {
         console.log(error);
@@ -87,24 +91,23 @@ function onDeviceReady() {
   //   }
   //   document.getElementById("title").value = "";
   //   document.getElementById("note").value = "";
-  //   getClasificacion(clasificacion);
+  //   getClasificacionEquipos(clasificacionEquipos);
   // });
 }
 // para coger notas de la base de datos
-function getClasificacion(clasificacion) {
-  if (clasificacion != null) {
-    document.getElementById("contenido").innerHTML = "Notas: <br>";
-    onChildAdded(clasificacion, (data) => {
-      console.log(data.key);
+function getClasificacionEquipos(clasificacionEquipos) {
+  if (clasificacionEquipos != null) {
+    document.getElementById("contenido").innerHTML = "Equipos: <br>";
+    onChildAdded(clasificacionEquipos, (data) => {
       console.log(data.val());
       document.getElementById("contenido").innerHTML +=
-        '<div id="' +
+        '<table id="' +
         data.key +
-        '" class="note"> <a>puntos: </a> ' +
-        data.val().Puntos +
-        "<br><a>posicion: </a> " +
-        data.val().Posicion +
-        "<br><br></div>";
+        '" class=""><tr><th>#</th></tr>"' +
+        '"<tr><td>"' +
+        data.key +
+        '"</td></tr>' +
+        "</table>";
     });
   }
 }
@@ -188,8 +191,14 @@ logout.addEventListener("click", async (e) => {
   e.preventDefault();
   try {
     await signOut(auth);
-    document.getElementById("page-login").classList.remove("d-none");
-    document.getElementById("page-main").classList.remove("d-inline");
+    document
+      .getElementById("page-login")
+      .children[0].classList.remove("d-none");
+    document
+      .getElementById("page-login")
+      .children[1].classList.remove("d-none");
+
+    document.getElementById("page-main").classList.remove("d-block");
     document.getElementById("page-main").classList.add("d-none");
   } catch (error) {
     console.log(error);
