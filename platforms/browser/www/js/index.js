@@ -51,7 +51,7 @@ function onDeviceReady() {
         console.log("User info: ", user_info);
         user = user_info.email
           .slice(0, user_info.email.indexOf("@"))
-          .replaceAll(".", "");
+          .replaceAll(".", " ");
         let name = user_info.displayName;
 
         document
@@ -63,7 +63,7 @@ function onDeviceReady() {
 
         document.getElementById("page-main").classList.remove("d-none");
         document.getElementById("page-main").classList.add("d-block");
-        document.getElementById("page-main-welcome").innerHTML +=
+        document.getElementById("page-main-welcome").innerHTML =
           "Bienvenido " + name + "<br>";
         let root_ref = ref(db, "users/" + user);
         set(root_ref, {
@@ -78,114 +78,121 @@ function onDeviceReady() {
         console.log(error);
       });
   }
-  // para imprimir
-  // document.getElementById("button-add").addEventListener("click", function () {
-  //   let titulo = document.getElementById("title").value;
-  //   let nota = document.getElementById("note").value;
-  //   if (titulo != "" && nota != "") {
-  //     let root_ref = ref(db, "notas/" + user + "/" + titulo);
-  //     set(root_ref, {
-  //       titulo: titulo,
-  //       nota: nota,
-  //     });
-  //   }
-  //   document.getElementById("title").value = "";
-  //   document.getElementById("note").value = "";
-  //   getClasificacionEquipos(clasificacionEquipos);
-  // });
 }
-// para coger notas de la base de datos
-function getClasificacionEquipos(clasificacionEquipos) {
-  if (clasificacionEquipos != null) {
-    document.getElementById("contenido").innerHTML = "Equipos: <br>";
-    onChildAdded(clasificacionEquipos, (data) => {
-      console.log(data.val());
-      document.getElementById("contenido").innerHTML +=
-        '<table id="' +
-        data.key +
-        '" class=""><tr><th>#</th></tr>"' +
-        '"<tr><td>"' +
-        data.key +
-        '"</td></tr>' +
-        "</table>";
-    });
-  }
-}
-// registrarse con correo y contraseña
+
+// Registrarse con correo y contraseña
 const signUpForm = document.querySelector("#signup-form");
-signUpForm.addEventListener("submit", async (e) => {
+signUpForm.addEventListener("submit", (e) => {
   e.preventDefault();
   const email = signUpForm["signup-email"].value;
   const password = signUpForm["signup-password"].value;
 
-  try {
-    const userCredential = await createUserWithEmailAndPassword(
-      auth,
-      email,
-      password
-    );
-    console.log(userCredential);
+  createUserWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+      console.log("a", userCredential);
 
-    // Close the signup modal
-    const signupModal = document.querySelector("#signupModal");
-    const modal = bootstrap.Modal.getInstance(signupModal);
-    modal.hide();
+      // Close the signup modal
+      const signupModal = document.querySelector("#signupModal");
+      const modal = bootstrap.Modal.getInstance(signupModal);
+      modal.hide();
 
-    // reset the form
-    signUpForm.reset();
+      // reset the form
+      signUpForm.reset();
 
-    // show welcome message
-    alert("Welcome" + userCredentials.user.email);
-  } catch (error) {
-    if (error.code === "auth/email-already-in-use") {
-      alert("Email already in use", "error");
-    } else if (error.code === "auth/invalid-email") {
-      alert("Invalid email", "error");
-    } else if (error.code === "auth/weak-password") {
-      alert("Weak password", "error");
-    } else if (error.code) {
-      alert("Something went wrong", "error");
-    }
-  }
+      // show welcome message
+      alert("Welcome " + userCredential.user.email);
+
+      document.getElementById("page-login").children[0].classList.add("d-none");
+      document.getElementById("page-login").children[1].classList.add("d-none");
+
+      document.getElementById("page-main").classList.remove("d-none");
+      document.getElementById("page-main").classList.add("d-block");
+
+      let user = userCredential.user.email
+        .slice(0, userCredential.user.email.indexOf("@"))
+        .replaceAll(".", " ");
+      document.getElementById("page-main-welcome").innerHTML =
+        "Bienvenido " + user;
+
+      // const root_ref = ref(db, "users/" + user);
+      // set(root_ref, {
+      //   nombre: name,
+      //   usuario: user,
+      //   email: user_info.email,
+      // });
+
+      const clasificacionEquipos = ref(db, "/Equipos/");
+      getClasificacionEquipos(clasificacionEquipos);
+    })
+    .catch((error) => {
+      if (error.code === "auth/email-already-in-use") {
+        alert("Email already in use", "error");
+      } else if (error.code === "auth/invalid-email") {
+        alert("Invalid email", "error");
+      } else if (error.code === "auth/weak-password") {
+        alert("Weak password", "error");
+      } else if (error.code) {
+        alert("Something went wrong", "error");
+      }
+    });
 });
-// iniciar sesion con correo y contraseña
+
+// Iniciar sesion con correo y contraseña
 const signInForm = document.querySelector("#login-form");
-signInForm.addEventListener("submit", async (e) => {
+signInForm.addEventListener("submit", (e) => {
   console.log("1");
   e.preventDefault();
   const email = signInForm["login-email"].value;
   const password = signInForm["login-password"].value;
   console.log(email, password);
 
-  try {
-    console.log("2");
-    const userCredentials = await signInWithEmailAndPassword(
-      auth,
-      email,
-      password
-    );
-    console.log(userCredentials);
+  signInWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+      console.log(userCredential);
 
-    // Close the login modal
-    const modal = bootstrap.Modal.getInstance(signInForm.closest(".modal"));
-    modal.hide();
+      // Close the login modal
+      const modal = bootstrap.Modal.getInstance(signInForm.closest(".modal"));
+      modal.hide();
 
-    // reset the form
-    signInForm.reset();
+      // reset the form
+      signInForm.reset();
 
-    // show welcome message
-    alert("Welcome" + userCredentials.user.email);
-  } catch (error) {
-    if (error.code === "auth/wrong-password") {
-      alert("Wrong password", "error");
-    } else if (error.code === "auth/user-not-found") {
-      alert("User not found", "error");
-    } else {
-      alert("Something went wrong", "error");
-    }
-  }
+      // show welcome message
+      alert("Welcome" + userCredential.user.email);
+      document.getElementById("page-login").children[0].classList.add("d-none");
+      document.getElementById("page-login").children[1].classList.add("d-none");
+
+      document.getElementById("page-main").classList.remove("d-none");
+      document.getElementById("page-main").classList.add("d-block");
+
+      let user = userCredential.user.email
+        .slice(0, userCredential.user.email.indexOf("@"))
+        .replaceAll(".", " ");
+      document.getElementById("page-main-welcome").innerHTML =
+        "Bienvenido " + user;
+
+      // const root_ref = ref(db, "users/" + user);
+      // set(root_ref, {
+      //   nombre: name,
+      //   usuario: user,
+      //   email: user_info.email,
+      // });
+
+      const clasificacionEquipos = ref(db, "/Equipos/");
+      getClasificacionEquipos(clasificacionEquipos);
+    })
+    .catch((error) => {
+      if (error.code === "auth/wrong-password") {
+        alert("Wrong password", "error");
+      } else if (error.code === "auth/user-not-found") {
+        alert("User not found", "error");
+      } else {
+        alert("Something went wrong", "error");
+      }
+    });
 });
-// LOgout
+
+// Logout
 const logout = document.querySelector("#logout");
 logout.addEventListener("click", async (e) => {
   e.preventDefault();
@@ -204,3 +211,20 @@ logout.addEventListener("click", async (e) => {
     console.log(error);
   }
 });
+
+// Imprimir la tabla desde la base de datos realtime
+function getClasificacionEquipos(clasificacionEquipos) {
+  if (clasificacionEquipos != null) {
+    document.getElementById("contenido").innerHTML = "Equipos:<br>";
+    onChildAdded(clasificacionEquipos, (data) => {
+      console.log(data.val());
+      // var tableHtml =
+      //   '<table id="' +
+      //   data.key +
+      //   '" class=""><tr><th>#</th><th>Columna 1</th><th>Columna 2</th><th>Columna 3</th><th>Columna 4</th><th>Columna 5</th><th>Columna 6</th><th>Columna 7</th><th>Columna 8</th><th>Columna 9</th></tr>';
+      // tableHtml +=
+      //   "<tr><td>1</td><td>Dato 1</td><td>Dato 2</td><td>Dato 3</td><td>Dato 4</td><td>Dato 5</td><td>Dato 6</td><td>Dato 7</td><td>Dato 8</td><td>Dato 9</td></tr>";
+      // document.getElementById("contenido").innerHTML += tableHtml;
+    });
+  }
+}
