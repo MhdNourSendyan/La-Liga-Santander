@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <!-- <meta http-equiv="Content-Security-Policy" content="
+    default-src 
+        'self' 
+        data: gap: wss: 
+        https://*.gstatic.com
+        https://*.googleapis.com
+        https://apis.google.com
+        https://www.googletagmanager.com
+        https://ejemploclasedaw.firebaseapp.com/
+        https://ejemploclasedaw-default-rtdb.europe-west1.firebasedatabase.app/
+        https://*.firebaseio.com
+        http://localhost:8000
+        'unsafe-inline'; 
+        style-src 
+            'self' 
+            'unsafe-inline'; 
+        media-src 
+            *; 
+        img-src 
+            'self'
+            https://lh3.googleusercontent.com/
+            data: content:;"> -->
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="color-scheme" content="light dark">
+    <title>La Liga Santander</title>
+    <!-- favicon.icon  -->
+    <link rel="shortcut icon" href="https://assets.laliga.com/assets/logos/laliga-v/laliga-v-1200x1200.png"
+        type="image/x-icon">
+    <!-- BOOSTRAP CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!-- CSS -->
+    <!-- <link rel="stylesheet" href="./main.css"> -->
+</head>
+
+<body>
+    <header>
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand bg-dark navbar-dark">
+            <div class="container">
+                <a class="navbar-brand" href="/">FireApp</a>
+                <button class="navbar-toggler" type="button" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse">
+                    <div class="navbar-nav ms-auto" id="page-login">
+                        <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#signinModal">Signin</a>
+                        <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#signupModal">Signup</a>
+                    </div>
+                    <a class="nav-link ms-auto" href="#" id="logout">Logout</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- CONTAINER -->
+    <div class="container p-5 d-none" id="page-main">
+        <div class="row">
+            <div class="col-md-6 mx-auto">
+                <h1 id="page-main-welcome"></h1>
+            </div>
+            <div id="contenido">
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Signup Modal -->
+    <div class="modal fade p-5" id="signupModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content bg-dark">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">SignUp</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form id="signup-form">
+                    <div class="modal-body">
+                        <label for="email">Email:</label>
+                        <input type="text" id="signup-email" class="form-control mb-3" placeholder="Title" required>
+                        <label for="password">Password:</label>
+                        <input type="password" id="signup-password" class="form-control mb-3" placeholder="Password"
+                            required>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Signin Modal -->
+    <div class="modal fade" id="signinModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content bg-dark">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">SignIn</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form id="login-form">
+                    <div class="modal-body">
+                        <label for="email">Email</label>
+                        <input type="email" id="login-email" class="form-control mb-3" placeholder="Enter email"
+                            required>
+                        <label for="password">Password:</label>
+                        <input type="password" id="login-password" class="form-control mb-3"
+                            placeholder="Enter password" required>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary w-100">Login</button>
+                        <p class="text-center text-secondary w-100 ">Or sign in with</p>
+                        <button type="button" class="btn btn-primary w-100" id="googleLogin">Google</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    </div>
+
+
+    <footer>
+
+    </footer>
+
+    <!-- BOOSTRAP SCRIPT -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <!-- SCRIPT -->
+    <script type="text/javascript" src="../platforms/browser/platform_www/cordova.js"></script>
+    <script type="module" src="js/index.js"></script>
+</body>
+
+</html>

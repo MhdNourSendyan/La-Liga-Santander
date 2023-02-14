@@ -1,0 +1,28 @@
+{
+  "prepare_queue": {
+    "installed": [],
+    "uninstalled": []
+  },
+  "config_munge": {
+    "files": {}
+  },
+  "installed_plugins": {
+    "cordova-plugin-firebase": {
+      "PACKAGE_NAME": "com.LaLigaSantander"
+    }
+  },
+  "dependent_plugins": {},
+  "modules": [
+    {
+      "file": "plugins/cordova-plugin-firebase/www/firebase-browser.js",
+      "id": "cordova-plugin-firebase.FirebasePlugin",
+      "pluginId": "cordova-plugin-firebase",
+      "clobbers": [
+        "FirebasePlugin"
+      ]
+    }
+  ],
+  "plugin_metadata": {
+    "cordova-plugin-firebase": "2.0.5"
+  }
+}

@@ -1,0 +1,21 @@
+#page-login{
+    display: block;
+    width: 80%;
+    padding-top: 100px;
+    margin: auto;
+    position: relative;
+}
+#button-login-google{
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+#page-main{
+    display: none;
+    width: 80%;
+    padding-left: 10%;
+    text-align: center;
+}
