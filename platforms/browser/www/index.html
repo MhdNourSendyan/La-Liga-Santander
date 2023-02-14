@@ -32,7 +32,7 @@
     <meta name="color-scheme" content="light dark">
     <title>La Liga Santander</title>
     <!-- favicon.icon  -->
-    <link rel="shortcut icon" href="https://assets.laliga.com/assets/logos/laliga-v/laliga-v-1200x1200.png"
+    <link rel="shortcut icon" href="https://fanfan.es/wp-content/uploads/2020/06/La-Liga.jpg"
         type="image/x-icon">
     <!-- BOOSTRAP CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -50,8 +50,8 @@
         <nav class="navbar navbar-expand ">
             <div class="container">
                 <a class="navbar-brand" href="/">
-                    <img src="https://assets.laliga.com/assets/logos/laliga-v/laliga-v-1200x1200.png" alt="logo" width="35"
-                        height="24" class="d-inline-block align-text-top">
+                    <img src="https://fanfan.es/wp-content/uploads/2020/06/La-Liga.jpg"
+                        alt="logo" width="25" height="25" class="d-inline-block align-text-top">
                     La Liga Santander
                 </a>
                 <button class="navbar-toggler" type="button" aria-label="Toggle navigation">
@@ -122,19 +122,42 @@
     </div>
 
     <!-- CONTAINER -->
+    <div class="container p-5 d-block" id="page-main-info">
+        <div class="row">
+            <div class="col-md-6 mx-auto text-center">
+                <h2 class="">Inicia sesión para ver la clasificación de la liga santander.</h2>
+            </div>
+        </div>
+    </div>
     <div class="container p-5 d-none" id="page-main">
         <div class="row">
             <div class="col-md-6 mx-auto text-center">
-                <h2 id="page-main-welcome"></h2>
+                <h2 id="page-main-welcome" class="">Inicia sesión para ver la clasificación de la liga santander.</h2>
             </div>
             <div id="contenido">
-
+                <table id="myTable" class="table table-hover table-bordered text-center">
+                    <thead>
+                        <tr>
+                            <th scope="col">Posición</th>
+                            <th scope="col">Nombre del equipo</th>
+                            <th scope="col">Puntos</th>
+                            <th scope="col">Partidos jugados</th>
+                            <th scope="col">Partidos ganados</th>
+                            <th scope="col">Partidos empatados</th>
+                            <th scope="col">Partidos perdidos</th>
+                            <th scope="col">Goles a favor</th>
+                            <th scope="col">Goles en contra</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
 
     <!-- FOOTER -->
-    <footer class="text-center border-top">
+    <footer class="text-center border-top fixed-bottom" id="footer">
         <div class="container p-4 pb-0">
             <section class="mb-3">
                 <!-- Section: Social media -->

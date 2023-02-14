@@ -1,0 +1,222 @@
+[
+  {
+    "Posicion": 1,
+    "Nombre_del_equipo": "Real Madrid",
+    "Puntos": 0,
+    "Partidos_jugados": 0,
+    "Partidos_ganados": 0,
+    "Partidos_empatados": 0,
+    "Partidos_perdidos": 0,
+    "Goles_a_favor": 0,
+    "Goles_en_contra": 0
+  },
+  {
+    "Posicion": 2,
+    "Nombre_del_equipo": "Barcelona",
+    "Puntos": 0,
+    "Partidos_jugados": 0,
+    "Partidos_ganados": 0,
+    "Partidos_empatados": 0,
+    "Partidos_perdidos": 0,
+    "Goles_a_favor": 0,
+    "Goles_en_contra": 0
+  },
+  {
+    "Posicion": 3,
+    "Nombre_del_equipo": "Atletico de Madrid",
+    "Puntos": 0,
+    "Partidos_jugados": 0,
+    "Partidos_ganados": 0,
+    "Partidos_empatados": 0,
+    "Partidos_perdidos": 0,
+    "Goles_a_favor": 0,
+    "Goles_en_contra": 0
+  },
+  {
+    "Posicion": 4,
+    "Nombre_del_equipo": "Sevilla",
+    "Puntos": 0,
+    "Partidos_jugados": 0,
+    "Partidos_ganados": 0,
+    "Partidos_empatados": 0,
+    "Partidos_perdidos": 0,
+    "Goles_a_favor": 0,
+    "Goles_en_contra": 0
+  },
+  {
+    "Posicion": 5,
+    "Nombre_del_equipo": "Real Sociedad",
+    "Puntos": 0,
+    "Partidos_jugados": 0,
+    "Partidos_ganados": 0,
+    "Partidos_empatados": 0,
+    "Partidos_perdidos": 0,
+    "Goles_a_favor": 0,
+    "Goles_en_contra": 0
+  },
+  {
+    "Posicion": 6,
+    "Nombre_del_equipo": "Real Betis",
+    "Puntos": 0,
+    "Partidos_jugados": 0,
+    "Partidos_ganados": 0,
+    "Partidos_empatados": 0,
+    "Partidos_perdidos": 0,
+    "Goles_a_favor": 0,
+    "Goles_en_contra": 0
+  },
+  {
+    "Posicion": 7,
+    "Nombre_del_equipo": "Valencia",
+    "Puntos": 0,
+    "Partidos_jugados": 0,
+    "Partidos_ganados": 0,
+    "Partidos_empatados": 0,
+    "Partidos_perdidos": 0,
+    "Goles_a_favor": 0,
+    "Goles_en_contra": 0
+  },
+  {
+    "Posicion": 8,
+    "Nombre_del_equipo": "Granada",
+    "Puntos": 0,
+    "Partidos_jugados": 0,
+    "Partidos_ganados": 0,
+    "Partidos_empatados": 0,
+    "Partidos_perdidos": 0,
+    "Goles_a_favor": 0,
+    "Goles_en_contra": 0
+  },
+  {
+    "Posicion": 9,
+    "Nombre_del_equipo": "Osasuna",
+    "Puntos": 0,
+    "Partidos_jugados": 0,
+    "Partidos_ganados": 0,
+    "Partidos_empatados": 0,
+    "Partidos_perdidos": 0,
+    "Goles_a_favor": 0,
+    "Goles_en_contra": 0
+  },
+  {
+    "Posicion": 10,
+    "Nombre_del_equipo": "Alaves",
+    "Puntos": 0,
+    "Partidos_jugados": 0,
+    "Partidos_ganados": 0,
+    "Partidos_empatados": 0,
+    "Partidos_perdidos": 0,
+    "Goles_a_favor": 0,
+    "Goles_en_contra": 0
+  },
+  {
+    "Posicion": 11,
+    "Nombre_del_equipo": "Real Valladolid",
+    "Puntos": 0,
+    "Partidos_jugados": 0,
+    "Partidos_ganados": 0,
+    "Partidos_empatados": 0,
+    "Partidos_perdidos": 0,
+    "Goles_a_favor": 0,
+    "Goles_en_contra": 0
+  },
+  {
+    "Posicion": 12,
+    "Nombre_del_equipo": "Levante",
+    "Puntos": 0,
+    "Partidos_jugados": 0,
+    "Partidos_ganados": 0,
+    "Partidos_empatados": 0,
+    "Partidos_perdidos": 0,
+    "Goles_a_favor": 0,
+    "Goles_en_contra": 0
+  },
+  {
+    "Posicion": 13,
+    "Nombre_del_equipo": "Elche",
+    "Puntos": 0,
+    "Partidos_jugados": 0,
+    "Partidos_ganados": 0,
+    "Partidos_empatados": 0,
+    "Partidos_perdidos": 0,
+    "Goles_a_favor": 0,
+    "Goles_en_contra": 0
+  },
+  {
+    "Posicion": 14,
+    "Nombre_del_equipo": "Athletic Bilbao",
+    "Puntos": 0,
+    "Partidos_jugados": 0,
+    "Partidos_ganados": 0,
+    "Partidos_empatados": 0,
+    "Partidos_perdidos": 0,
+    "Goles_a_favor": 0,
+    "Goles_en_contra": 0
+  },
+  {
+    "Posicion": 15,
+    "Nombre_del_equipo": "Getafe",
+    "Puntos": 0,
+    "Partidos_jugados": 0,
+    "Partidos_ganados": 0,
+    "Partidos_empatados": 0,
+    "Partidos_perdidos": 0,
+    "Goles_a_favor": 0,
+    "Goles_en_contra": 0
+  },
+  {
+    "Posicion": 16,
+    "Nombre_del_equipo": "Celta de Vigo",
+    "Puntos": 0,
+    "Partidos_jugados": 0,
+    "Partidos_ganados": 0,
+    "Partidos_empatados": 0,
+    "Partidos_perdidos": 0,
+    "Goles_a_favor": 0,
+    "Goles_en_contra": 0
+  },
+  {
+    "Posicion": 17,
+    "Nombre_del_equipo": "Almeria",
+    "Puntos": 0,
+    "Partidos_jugados": 0,
+    "Partidos_ganados": 0,
+    "Partidos_empatados": 0,
+    "Partidos_perdidos": 0,
+    "Goles_a_favor": 0,
+    "Goles_en_contra": 0
+  },
+  {
+    "Posicion": 18,
+    "Nombre_del_equipo": "Deportivo de La Coruna",
+    "Puntos": 0,
+    "Partidos_jugados": 0,
+    "Partidos_ganados": 0,
+    "Partidos_empatados": 0,
+    "Partidos_perdidos": 0,
+    "Goles_a_favor": 0,
+    "Goles_en_contra": 0
+  },
+  {
+    "Posicion": 19,
+    "Nombre_del_equipo": "Malaga",
+    "Puntos": 0,
+    "Partidos_jugados": 0,
+    "Partidos_ganados": 0,
+    "Partidos_empatados": 0,
+    "Partidos_perdidos": 0,
+    "Goles_a_favor": 0,
+    "Goles_en_contra": 0
+  },
+  {
+    "Posicion": 20,
+    "Nombre_del_equipo": "Rayo Vallecano",
+    "Puntos": 4,
+    "Partidos_jugados": 0,
+    "Partidos_ganados": 0,
+    "Partidos_empatados": 0,
+    "Partidos_perdidos": 0,
+    "Goles_a_favor": 0,
+    "Goles_en_contra": 0
+  }
+]

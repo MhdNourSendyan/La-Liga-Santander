@@ -54,15 +54,21 @@ function onDeviceReady() {
           .replaceAll(".", " ");
         let name = user_info.displayName;
 
-        document
-          .getElementById("page-login")
-          .children[0].classList.add("d-none");
-        document
-          .getElementById("page-login")
-          .children[1].classList.add("d-none");
+        const pageLogin = document.getElementById("page-login");
+        pageLogin.children[0].classList.add("d-none");
+        pageLogin.children[1].classList.add("d-none");
 
-        document.getElementById("page-main").classList.remove("d-none");
-        document.getElementById("page-main").classList.add("d-block");
+        const pageWelcome = document.getElementById("page-main-info");
+        pageWelcome.classList.remove("d-block");
+        pageWelcome.classList.add("d-none");
+
+        const pageMain = document.getElementById("page-main");
+        pageMain.classList.remove("d-none");
+        pageMain.classList.add("d-block");
+
+        const footer = document.getElementById("footer");
+        footer.classList.remove("fixed-bottom");
+
         document.getElementById("page-main-welcome").innerHTML =
           "Bienvenido " + name + "<br>";
         let root_ref = ref(db, "users/" + user);
@@ -101,25 +107,22 @@ signUpForm.addEventListener("submit", (e) => {
 
       // show welcome message
       alert("Welcome " + userCredential.user.email);
-
-      document.getElementById("page-login").children[0].classList.add("d-none");
-      document.getElementById("page-login").children[1].classList.add("d-none");
-
-      document.getElementById("page-main").classList.remove("d-none");
-      document.getElementById("page-main").classList.add("d-block");
-
+      const pageLogin = document.getElementById("page-login");
+      pageLogin.children[0].classList.add("d-none");
+      pageLogin.children[1].classList.add("d-none");
+      const pageWelcome = document.getElementById("page-main-info");
+      pageWelcome.classList.remove("d-block");
+      pageWelcome.classList.add("d-none");
+      const pageMain = document.getElementById("page-main");
+      pageMain.classList.remove("d-none");
+      pageMain.classList.add("d-block");
+      const footer = document.getElementById("footer");
+      footer.classList.remove("fixed-bottom");
       let user = userCredential.user.email
         .slice(0, userCredential.user.email.indexOf("@"))
         .replaceAll(".", " ");
       document.getElementById("page-main-welcome").innerHTML =
         "Bienvenido " + user;
-
-      // const root_ref = ref(db, "users/" + user);
-      // set(root_ref, {
-      //   nombre: name,
-      //   usuario: user,
-      //   email: user_info.email,
-      // });
 
       const clasificacionEquipos = ref(db, "/Equipos/");
       getClasificacionEquipos(clasificacionEquipos);
@@ -140,7 +143,6 @@ signUpForm.addEventListener("submit", (e) => {
 // Iniciar sesion con correo y contraseña
 const signInForm = document.querySelector("#login-form");
 signInForm.addEventListener("submit", (e) => {
-  console.log("1");
   e.preventDefault();
   const email = signInForm["login-email"].value;
   const password = signInForm["login-password"].value;
@@ -149,34 +151,29 @@ signInForm.addEventListener("submit", (e) => {
   signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       console.log(userCredential);
-
       // Close the login modal
       const modal = bootstrap.Modal.getInstance(signInForm.closest(".modal"));
       modal.hide();
-
       // reset the form
       signInForm.reset();
-
       // show welcome message
       alert("Welcome" + userCredential.user.email);
-      document.getElementById("page-login").children[0].classList.add("d-none");
-      document.getElementById("page-login").children[1].classList.add("d-none");
-
-      document.getElementById("page-main").classList.remove("d-none");
-      document.getElementById("page-main").classList.add("d-block");
-
+      const pageLogin = document.getElementById("page-login");
+      pageLogin.children[0].classList.add("d-none");
+      pageLogin.children[1].classList.add("d-none");
+      const pageWelcome = document.getElementById("page-main-info");
+      pageWelcome.classList.remove("d-block");
+      pageWelcome.classList.add("d-none");
+      const pageMain = document.getElementById("page-main");
+      pageMain.classList.remove("d-none");
+      pageMain.classList.add("d-block");
+      const footer = document.getElementById("footer");
+      footer.classList.remove("fixed-bottom");
       let user = userCredential.user.email
         .slice(0, userCredential.user.email.indexOf("@"))
         .replaceAll(".", " ");
       document.getElementById("page-main-welcome").innerHTML =
         "Bienvenido " + user;
-
-      // const root_ref = ref(db, "users/" + user);
-      // set(root_ref, {
-      //   nombre: name,
-      //   usuario: user,
-      //   email: user_info.email,
-      // });
 
       const clasificacionEquipos = ref(db, "/Equipos/");
       getClasificacionEquipos(clasificacionEquipos);
@@ -198,15 +195,17 @@ logout.addEventListener("click", async (e) => {
   e.preventDefault();
   try {
     await signOut(auth);
-    document
-      .getElementById("page-login")
-      .children[0].classList.remove("d-none");
-    document
-      .getElementById("page-login")
-      .children[1].classList.remove("d-none");
-
-    document.getElementById("page-main").classList.remove("d-block");
-    document.getElementById("page-main").classList.add("d-none");
+    const pageLogin = document.getElementById("page-login");
+    pageLogin.children[0].classList.remove("d-none");
+    pageLogin.children[1].classList.remove("d-none");
+    const pageWelcome = document.getElementById("page-main-info");
+    pageWelcome.classList.remove("d-none");
+    pageWelcome.classList.add("d-block");
+    const pageMain = document.getElementById("page-main");
+    pageMain.classList.remove("d-block");
+    pageMain.classList.add("d-none");
+    const footer = document.getElementById("footer");
+    footer.classList.add("fixed-bottom");
   } catch (error) {
     console.log(error);
   }
@@ -215,16 +214,23 @@ logout.addEventListener("click", async (e) => {
 // Imprimir la tabla desde la base de datos realtime
 function getClasificacionEquipos(clasificacionEquipos) {
   if (clasificacionEquipos != null) {
-    document.getElementById("contenido").innerHTML = "Equipos:<br>";
+    // document.getElementById("contenido").innerHTML = "Equipos:<br>";
     onChildAdded(clasificacionEquipos, (data) => {
-      console.log(data.val());
-      // var tableHtml =
-      //   '<table id="' +
-      //   data.key +
-      //   '" class=""><tr><th>#</th><th>Columna 1</th><th>Columna 2</th><th>Columna 3</th><th>Columna 4</th><th>Columna 5</th><th>Columna 6</th><th>Columna 7</th><th>Columna 8</th><th>Columna 9</th></tr>';
-      // tableHtml +=
-      //   "<tr><td>1</td><td>Dato 1</td><td>Dato 2</td><td>Dato 3</td><td>Dato 4</td><td>Dato 5</td><td>Dato 6</td><td>Dato 7</td><td>Dato 8</td><td>Dato 9</td></tr>";
-      // document.getElementById("contenido").innerHTML += tableHtml;
+      data = data.val();
+      const table = document.querySelector("#myTable");
+      const tableBody = table.querySelector("tbody");
+      const newRow = `<tr>
+                        <th scope="row">${data.Posicion}</th>
+                        <td>${data.Nombre_del_equipo}</td>
+                        <td>${data.Puntos}</td>
+                        <td>${data.Partidos_jugados}</td>
+                        <td>${data.Partidos_ganados}</td>
+                        <td>${data.Partidos_empatados}</td>
+                        <td>${data.Partidos_perdidos}</td>
+                        <td>${data.Goles_a_favor}</td>
+                        <td>${data.Goles_en_contra}</td>
+                      </tr>`;
+      tableBody.innerHTML += newRow;
     });
   }
 }
