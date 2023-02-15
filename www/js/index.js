@@ -122,7 +122,7 @@ signUpForm.addEventListener("submit", (e) => {
         .slice(0, userCredential.user.email.indexOf("@"))
         .replaceAll(".", " ");
       document.getElementById("page-main-welcome").innerHTML =
-        "Bienvenido " + user;
+        "Bienvenido " + user + "<br>";
 
       const clasificacionEquipos = ref(db, "/Equipos/");
       getClasificacionEquipos(clasificacionEquipos);
@@ -173,7 +173,7 @@ signInForm.addEventListener("submit", (e) => {
         .slice(0, userCredential.user.email.indexOf("@"))
         .replaceAll(".", " ");
       document.getElementById("page-main-welcome").innerHTML =
-        "Bienvenido " + user;
+        "Bienvenido " + user + "<br>";
 
       const clasificacionEquipos = ref(db, "/Equipos/");
       getClasificacionEquipos(clasificacionEquipos);
@@ -227,10 +227,10 @@ function getClasificacionEquipos(clasificacionEquipos) {
                         <td>${data.Partidos_ganados}</td>
                         <td>${data.Partidos_empatados}</td>
                         <td>${data.Partidos_perdidos}</td>
-                        <td>${data.Goles_a_favor}</td>
-                        <td>${data.Goles_en_contra}</td>
                       </tr>`;
       tableBody.innerHTML += newRow;
     });
   }
 }
+// <td>${data.Goles_a_favor}</td>
+// <td>${data.Goles_en_contra}</td>

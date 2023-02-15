@@ -1,31 +1,7 @@
+@import url("https://fonts.googleapis.com/css2?family=Rubik&display=swap");
 * {
-  font-family: "Courier New", Courier, monospace;
-  color: black !important;
+  font-family: "Rubik", sans-serif;
 }
-a:active,
-a:visited,
-a:hover {
-  /* text-decoration: none;
-  color: white; */
+i {
+  cursor: pointer;
 }
-/* #page-login{
-    display: block;
-    width: 80%;
-    padding-top: 100px;
-    margin: auto;
-    position: relative;
-}
-#button-login-google{
-    margin: 0;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    -ms-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
-}
-#page-main{
-    display: none;
-    width: 80%;
-    padding-left: 10%;
-    text-align: center;
-} */
