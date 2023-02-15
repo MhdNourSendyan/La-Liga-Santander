@@ -54,9 +54,10 @@ function onDeviceReady() {
           .replaceAll(".", " ");
         let name = user_info.displayName;
 
-        const pageLogin = document.getElementById("page-login");
-        pageLogin.children[0].classList.add("d-none");
-        pageLogin.children[1].classList.add("d-none");
+        const pageLogin = document.querySelectorAll("#page-login li");
+        pageLogin[0].classList.add("d-none");
+        pageLogin[1].classList.add("d-none");
+        pageLogin[2].classList.remove("d-none");
 
         const pageWelcome = document.getElementById("page-main-info");
         pageWelcome.classList.remove("d-block");
@@ -105,11 +106,10 @@ signUpForm.addEventListener("submit", (e) => {
       // reset the form
       signUpForm.reset();
 
-      // show welcome message
-      alert("Welcome " + userCredential.user.email);
-      const pageLogin = document.getElementById("page-login");
-      pageLogin.children[0].classList.add("d-none");
-      pageLogin.children[1].classList.add("d-none");
+      const pageLogin = document.querySelectorAll("#page-login li");
+      pageLogin[0].classList.add("d-none");
+      pageLogin[1].classList.add("d-none");
+      pageLogin[2].classList.remove("d-none");
       const pageWelcome = document.getElementById("page-main-info");
       pageWelcome.classList.remove("d-block");
       pageWelcome.classList.add("d-none");
@@ -129,13 +129,13 @@ signUpForm.addEventListener("submit", (e) => {
     })
     .catch((error) => {
       if (error.code === "auth/email-already-in-use") {
-        alert("Email already in use", "error");
+        lanzarModal("El correo ya está en uso");
       } else if (error.code === "auth/invalid-email") {
-        alert("Invalid email", "error");
+        lanzarModal("Correo inválido");
       } else if (error.code === "auth/weak-password") {
-        alert("Weak password", "error");
+        lanzarModal("Contraseña débil");
       } else if (error.code) {
-        alert("Something went wrong", "error");
+        lanzarModal("Otro error!!!");
       }
     });
 });
@@ -156,11 +156,11 @@ signInForm.addEventListener("submit", (e) => {
       modal.hide();
       // reset the form
       signInForm.reset();
-      // show welcome message
-      alert("Welcome" + userCredential.user.email);
-      const pageLogin = document.getElementById("page-login");
-      pageLogin.children[0].classList.add("d-none");
-      pageLogin.children[1].classList.add("d-none");
+
+      const pageLogin = document.querySelectorAll("#page-login li");
+      pageLogin[0].classList.add("d-none");
+      pageLogin[1].classList.add("d-none");
+      pageLogin[2].classList.remove("d-none");
       const pageWelcome = document.getElementById("page-main-info");
       pageWelcome.classList.remove("d-block");
       pageWelcome.classList.add("d-none");
@@ -180,11 +180,11 @@ signInForm.addEventListener("submit", (e) => {
     })
     .catch((error) => {
       if (error.code === "auth/wrong-password") {
-        alert("Wrong password", "error");
+        lanzarModal("Contraseña incorrecta");
       } else if (error.code === "auth/user-not-found") {
-        alert("User not found", "error");
+        lanzarModal("Usuario no encontrado");
       } else {
-        alert("Something went wrong", "error");
+        lanzarModal("Otro error!!!");
       }
     });
 });
@@ -195,9 +195,10 @@ logout.addEventListener("click", async (e) => {
   e.preventDefault();
   try {
     await signOut(auth);
-    const pageLogin = document.getElementById("page-login");
-    pageLogin.children[0].classList.remove("d-none");
-    pageLogin.children[1].classList.remove("d-none");
+    const pageLogin = document.querySelectorAll("#page-login li");
+    pageLogin[0].classList.remove("d-none");
+    pageLogin[1].classList.remove("d-none");
+    pageLogin[2].classList.add("d-none");
     const pageWelcome = document.getElementById("page-main-info");
     pageWelcome.classList.remove("d-none");
     pageWelcome.classList.add("d-block");
@@ -227,11 +228,41 @@ function getClasificacionEquipos(clasificacionEquipos) {
                         <td>${data.Partidos_ganados}</td>
                         <td>${data.Partidos_empatados}</td>
                         <td>${data.Partidos_perdidos}</td>
-
                       </tr>`;
       tableBody.innerHTML += newRow;
     });
   }
 }
-// <td>${data.Goles_a_favor}</td>
-// <td>${data.Goles_en_contra}</td>
+
+function lanzarModal(texto) {
+  // Crear el elemento del modal
+  let modal = document.createElement("div");
+  modal.classList.add("modal", "fade");
+
+  // Crear el diálogo del modal
+  let dialog = document.createElement("div");
+  dialog.classList.add("modal-dialog");
+
+  // Crear el contenido del diálogo del modal
+  let content = document.createElement("div");
+  content.classList.add("modal-content");
+  content.classList.add("bg-danger");
+  content.classList.add("text-light");
+
+  // Crear el cuerpo del modal con el texto que se le pasó como parámetro
+  let body = document.createElement("div");
+  body.classList.add("modal-body");
+  body.innerHTML = texto;
+
+  // Agregar el encabezado y el cuerpo al contenido del modal
+  content.appendChild(body);
+
+  // Agregar el contenido al diálogo del modal
+  dialog.appendChild(content);
+
+  // Agregar el diálogo al modal
+  modal.appendChild(dialog);
+
+  // Mostrar el modal
+  $(modal).modal("show");
+}

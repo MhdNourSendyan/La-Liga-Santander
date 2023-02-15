@@ -44,7 +44,7 @@
 
 <body>
     <!-- HEADER -->
-    <header class="border-bottom">
+    <header class="border-bottom bg-light">
         <!-- Navbar -->
         <nav class="navbar navbar-expand-lg">
             <div class="container-fluid">
@@ -67,7 +67,7 @@
                             <a class="nav-link text-dark" href="#" data-bs-toggle="modal"
                                 data-bs-target="#signupModal">Signup</a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item  d-none">
                             <a class="nav-link text-dark" href="#" id="logout">Logout</a>
                         </li>
                     </ul>
@@ -139,7 +139,7 @@
     </div>
 
     <!-- CONTAINER-fcontainer-fluid -->
-    <div class="container-fluid p-5 d-block" id="page-main-info">
+    <div class="container-fluid p-5 bg-light d-block" id="page-main-info">
         <div class="row">
             <div class="col-md-6 mx-auto text-center">
                 <h2 class="">Inicia sesión para ver la clasificación de la liga santander.</h2>
@@ -148,7 +148,7 @@
             </div>
         </div>
     </div>
-    <div class="container-fluid p-5 d-none" id="page-main">
+    <div class="container-fluid p-5 bg-light d-none" id="page-main">
         <div class="row">
             <div class="col-md-6 mx-auto text-center">
                 <h2 id="page-main-welcome" class="">Inicia sesión para ver las clasificaciones de la liga santander.
@@ -169,8 +169,6 @@
                                 <th scope="col">Partidos ganados</th>
                                 <th scope="col">Partidos empatados</th>
                                 <th scope="col">Partidos perdidos</th>
-                                <!-- <th scope="col">Goles a favor</th>
-                                <th scope="col">Goles en contra</th> -->
                             </tr>
                         </thead>
                         <tbody>
@@ -182,7 +180,7 @@
     </div>
 
     <!-- FOOTER -->
-    <footer class="text-center border-top fixed-bottom" id="footer">
+    <footer class="text-center border-top bg-light fixed-bottom" id="footer">
         <div class="container-fluid p-4 pb-0">
             <section class="mb-3">
                 <!-- Section: Social media -->
@@ -210,6 +208,7 @@
         crossorigin="anonymous"></script>
     <!-- SCRIPT -->
     <script type="text/javascript" src="../platforms/browser/platform_www/cordova.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script type="module" src="js/index.js"></script>
     <script src="js/showPass.js"></script>
 </body>
