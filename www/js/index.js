@@ -181,7 +181,7 @@ signInForm.addEventListener("submit", (e) => {
       if (error.code === "auth/wrong-password") {
         lanzarModal("Contraseña incorrecta");
       } else if (error.code === "auth/user-not-found") {
-        lanzarModal("Usuario no encontrado");
+        lanzarModal("Correo no encontrado");
       } else {
         lanzarModal("Otro error!!!");
       }
@@ -222,7 +222,7 @@ function getClasificacionEquipos(clasificacionEquipos) {
       const newRow = `<tr>
                         <th scope="row">${data.Posicion}</th>
                         <td>${data.Nombre_del_equipo}</td>
-                        <td>${data.Puntos}</td>
+                        <th class="table-primary" scope="row">${data.Puntos}</th>
                         <td>${data.Partidos_jugados}</td>
                         <td>${data.Partidos_ganados}</td>
                         <td>${data.Partidos_empatados}</td>
@@ -231,6 +231,7 @@ function getClasificacionEquipos(clasificacionEquipos) {
       tableBody.innerHTML += newRow;
     });
   }
+  pintarCeldas();
 }
 
 function lanzarModal(texto) {
@@ -264,4 +265,17 @@ function lanzarModal(texto) {
 
   // Mostrar el modal
   $(modal).modal("show");
+}
+
+function pintarCeldas() {
+  const table = document.querySelector("#myTable");
+  const tableBody = table.querySelector("tbody");
+  // Obtener la primera fila de la tabla
+  let fila = tableBody.getElementsByTagName("tr")[0];
+  // Obtener la primera celda de la fila
+  let celda = fila.getElementsByTagName("th");
+
+  console.log(fila, celda);
+  // Modificar el estilo CSS de la celda para cambiar el color de fondo
+  celda.style.backgroundColor = blue;
 }
