@@ -7,6 +7,9 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
+  GithubAuthProvider,
+  signInWithPopup,
+  fetchSignInMethodsForEmail,
 } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-auth.js";
 import {
   getDatabase,
@@ -86,6 +89,42 @@ function onDeviceReady() {
       });
   }
 }
+// con github
+const githubButton = document.querySelector("#githubLogin");
+githubButton.addEventListener("click", (e) => {
+  e.preventDefault();
+  const provider = new GithubAuthProvider();
+  signInWithPopup(auth, provider)
+    .then((credentials) => {
+      console.log(credentials);
+
+      // Close the login modal
+      const modal = bootstrap.Modal.getInstance(signInForm.closest(".modal"));
+      modal.hide();
+
+      const pageLogin = document.querySelectorAll("#page-login li");
+      pageLogin[0].classList.add("d-none");
+      pageLogin[1].classList.add("d-none");
+      pageLogin[2].classList.remove("d-none");
+      const pageWelcome = document.getElementById("page-main-info");
+      pageWelcome.classList.remove("d-block");
+      pageWelcome.classList.add("d-none");
+      const pageMain = document.getElementById("page-main");
+      pageMain.classList.remove("d-none");
+      pageMain.classList.add("d-block");
+      const footer = document.getElementById("footer");
+      footer.classList.remove("fixed-bottom");
+      let user = credentials.user.displayName;
+      document.getElementById("page-main-welcome").innerHTML =
+        "Bienvenido " + user + "<br>";
+
+      const clasificacionEquipos = ref(db, "/Equipos/");
+      getClasificacionEquipos(clasificacionEquipos);
+    })
+    .catch((error) => {
+      lanzarModal(error);
+    });
+});
 
 // Registrarse con correo y contraseña
 const signUpForm = document.querySelector("#signup-form");
@@ -188,29 +227,6 @@ signInForm.addEventListener("submit", (e) => {
     });
 });
 
-// Logout
-const logout = document.querySelector("#logout");
-logout.addEventListener("click", async (e) => {
-  e.preventDefault();
-  try {
-    await signOut(auth);
-    const pageLogin = document.querySelectorAll("#page-login li");
-    pageLogin[0].classList.remove("d-none");
-    pageLogin[1].classList.remove("d-none");
-    pageLogin[2].classList.add("d-none");
-    const pageWelcome = document.getElementById("page-main-info");
-    pageWelcome.classList.remove("d-none");
-    pageWelcome.classList.add("d-block");
-    const pageMain = document.getElementById("page-main");
-    pageMain.classList.remove("d-block");
-    pageMain.classList.add("d-none");
-    const footer = document.getElementById("footer");
-    footer.classList.add("fixed-bottom");
-  } catch (error) {
-    console.log(error);
-  }
-});
-
 // Imprimir la tabla desde la base de datos realtime
 function getClasificacionEquipos(clasificacionEquipos) {
   if (clasificacionEquipos != null) {
@@ -232,40 +248,6 @@ function getClasificacionEquipos(clasificacionEquipos) {
     });
   }
 }
-
-function lanzarModal(texto) {
-  // Crear el elemento del modal
-  let modal = document.createElement("div");
-  modal.classList.add("modal", "fade");
-
-  // Crear el diálogo del modal
-  let dialog = document.createElement("div");
-  dialog.classList.add("modal-dialog");
-
-  // Crear el contenido del diálogo del modal
-  let content = document.createElement("div");
-  content.classList.add("modal-content");
-  content.classList.add("bg-danger");
-  content.classList.add("text-light");
-
-  // Crear el cuerpo del modal con el texto que se le pasó como parámetro
-  let body = document.createElement("div");
-  body.classList.add("modal-body");
-  body.innerHTML = texto;
-
-  // Agregar el encabezado y el cuerpo al contenido del modal
-  content.appendChild(body);
-
-  // Agregar el contenido al diálogo del modal
-  dialog.appendChild(content);
-
-  // Agregar el diálogo al modal
-  modal.appendChild(dialog);
-
-  // Mostrar el modal
-  $(modal).modal("show");
-}
-
 function pintarCelda() {
   const table = document.querySelector("#myTable");
   const tableBody = table.querySelector("tbody");
@@ -310,3 +292,58 @@ function pintarCelda() {
     }
   }
 }
+
+function lanzarModal(texto) {
+  // Crear el elemento del modal
+  let modal = document.createElement("div");
+  modal.classList.add("modal", "fade");
+
+  // Crear el diálogo del modal
+  let dialog = document.createElement("div");
+  dialog.classList.add("modal-dialog");
+
+  // Crear el contenido del diálogo del modal
+  let content = document.createElement("div");
+  content.classList.add("modal-content");
+  content.classList.add("bg-danger");
+  content.classList.add("text-light");
+
+  // Crear el cuerpo del modal con el texto que se le pasó como parámetro
+  let body = document.createElement("div");
+  body.classList.add("modal-body");
+  body.innerHTML = texto;
+
+  // Agregar el encabezado y el cuerpo al contenido del modal
+  content.appendChild(body);
+
+  // Agregar el contenido al diálogo del modal
+  dialog.appendChild(content);
+
+  // Agregar el diálogo al modal
+  modal.appendChild(dialog);
+
+  // Mostrar el modal
+  $(modal).modal("show");
+}
+// Logout
+const logout = document.querySelector("#logout");
+logout.addEventListener("click", async (e) => {
+  e.preventDefault();
+  try {
+    await signOut(auth);
+    const pageLogin = document.querySelectorAll("#page-login li");
+    pageLogin[0].classList.remove("d-none");
+    pageLogin[1].classList.remove("d-none");
+    pageLogin[2].classList.add("d-none");
+    const pageWelcome = document.getElementById("page-main-info");
+    pageWelcome.classList.remove("d-none");
+    pageWelcome.classList.add("d-block");
+    const pageMain = document.getElementById("page-main");
+    pageMain.classList.remove("d-block");
+    pageMain.classList.add("d-none");
+    const footer = document.getElementById("footer");
+    footer.classList.add("fixed-bottom");
+  } catch (error) {
+    console.log(error);
+  }
+});
