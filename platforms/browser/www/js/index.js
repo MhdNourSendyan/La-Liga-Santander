@@ -214,24 +214,23 @@ logout.addEventListener("click", async (e) => {
 // Imprimir la tabla desde la base de datos realtime
 function getClasificacionEquipos(clasificacionEquipos) {
   if (clasificacionEquipos != null) {
-    // document.getElementById("contenido").innerHTML = "Equipos:<br>";
     onChildAdded(clasificacionEquipos, (data) => {
       data = data.val();
       const table = document.querySelector("#myTable");
       const tableBody = table.querySelector("tbody");
       const newRow = `<tr>
-                        <th scope="row">${data.Posicion}</th>
+                        <td><b>${data.Posicion}</b></td>
                         <td>${data.Nombre_del_equipo}</td>
-                        <th class="table-primary" scope="row">${data.Puntos}</th>
+                        <td class="table-primary"><b>${data.Puntos}</b></td>
                         <td>${data.Partidos_jugados}</td>
                         <td>${data.Partidos_ganados}</td>
                         <td>${data.Partidos_empatados}</td>
                         <td>${data.Partidos_perdidos}</td>
                       </tr>`;
       tableBody.innerHTML += newRow;
+      pintarCelda();
     });
   }
-  pintarCeldas();
 }
 
 function lanzarModal(texto) {
@@ -267,15 +266,47 @@ function lanzarModal(texto) {
   $(modal).modal("show");
 }
 
-function pintarCeldas() {
+function pintarCelda() {
   const table = document.querySelector("#myTable");
   const tableBody = table.querySelector("tbody");
-  // Obtener la primera fila de la tabla
-  let fila = tableBody.getElementsByTagName("tr")[0];
-  // Obtener la primera celda de la fila
-  let celda = fila.getElementsByTagName("th");
 
-  console.log(fila, celda);
-  // Modificar el estilo CSS de la celda para cambiar el color de fondo
-  celda.style.backgroundColor = blue;
+  // Obtener todas las filas de la tabla
+  let filas = tableBody.getElementsByTagName("tr");
+  filas = Array.from(filas);
+
+  // Iterar por cada fila
+  for (let i = 0; i < filas.length; i++) {
+    let celdas;
+    if (i <= 3) {
+      // Obtener las primeras cuatro celdas de la fila
+      celdas = filas[i].getElementsByTagName("td");
+      celdas = Array.from(celdas).slice(0, 2);
+      celdas[0].classList.add("blue");
+      celdas[1].classList.add("blue");
+    } else if (i === 4) {
+      // Obtener la primera celda de la fila 5
+      celdas = filas[i].getElementsByTagName("td");
+      celdas = Array.from(celdas).slice(0, 2);
+      celdas[0].classList.add("yellow");
+      celdas[1].classList.add("yellow");
+    } else if (i === 5) {
+      // Obtener la primera celda de la fila 6
+      celdas = filas[i].getElementsByTagName("td");
+      celdas = Array.from(celdas).slice(0, 2);
+      celdas[0].classList.add("green");
+      celdas[1].classList.add("green");
+    } else if (i >= filas.length - 3) {
+      // Obtener la primera celda de las últimas tres filas
+      celdas = filas[i].getElementsByTagName("td");
+      celdas = Array.from(celdas).slice(0, 2);
+      celdas[0].classList.add("red");
+      celdas[1].classList.add("red");
+    } else {
+      // Remover la clase "bg-danger" de las demás celdas
+      celdas = filas[i].getElementsByTagName("td");
+      celdas = Array.from(celdas).slice(0, 2);
+      celdas[0].classList.remove("red");
+      celdas[1].classList.remove("red");
+    }
+  }
 }

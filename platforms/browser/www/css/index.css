@@ -5,3 +5,39 @@
 i {
   cursor: pointer;
 }
+.blue {
+  color: #0c519c;
+}
+.yellow {
+  color: #ee8707;
+}
+.green {
+  color: #119541;
+}
+.red {
+  color: #e00c1a;
+}
+#clasificacion {
+  list-style: none;
+}
+#clasificacion li {
+  display: inline-block;
+  width: auto;
+  margin-right: 8px;
+}
+#clasificacion li:nth-child(1) {
+  padding-left: 8px;
+  border-left: #0c519c outset 5px;
+}
+#clasificacion li:nth-child(2) {
+  padding-left: 8px;
+  border-left: #ee8707 outset 5px;
+}
+#clasificacion li:nth-child(3) {
+  padding-left: 8px;
+  border-left: #119541 outset 5px;
+}
+#clasificacion li:nth-child(4) {
+  padding-left: 8px;
+  border-left: #e00c1a outset 5px;
+}
