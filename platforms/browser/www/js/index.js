@@ -9,7 +9,6 @@ import {
   signOut,
   GithubAuthProvider,
   signInWithPopup,
-  fetchSignInMethodsForEmail,
 } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-auth.js";
 import {
   getDatabase,
@@ -97,13 +96,10 @@ githubButton.addEventListener("click", (e) => {
   signInWithPopup(auth, provider)
     .then((credentials) => {
       console.log(credentials);
-      console.log("git sign in");
 
       // Close the login modal
       const modal = bootstrap.Modal.getInstance(signInForm.closest(".modal"));
       modal.hide();
-      // reset the form
-      signInForm.reset();
 
       const pageLogin = document.querySelectorAll("#page-login li");
       pageLogin[0].classList.add("d-none");

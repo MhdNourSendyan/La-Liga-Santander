@@ -1,21 +1,21 @@
 [
   {
     "Posicion": 1,
-    "Nombre_del_equipo": "Real Madrid",
-    "Puntos": 57,
-    "Partidos_jugados": 21,
-    "Partidos_ganados": 18,
-    "Partidos_empatados": 3,
-    "Partidos_perdidos": 0
-  },
-  {
-    "Posicion": 2,
     "Nombre_del_equipo": "Barcelona",
     "Puntos": 56,
     "Partidos_jugados": 21,
     "Partidos_ganados": 18,
     "Partidos_empatados": 2,
     "Partidos_perdidos": 1
+  },
+  {
+    "Posicion": 2,
+    "Nombre_del_equipo": "Real Madrid",
+    "Puntos": 48,
+    "Partidos_jugados": 21,
+    "Partidos_ganados": 15,
+    "Partidos_empatados": 3,
+    "Partidos_perdidos": 3
   },
   {
     "Posicion": 3,

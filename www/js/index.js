@@ -9,7 +9,6 @@ import {
   signOut,
   GithubAuthProvider,
   signInWithPopup,
-  fetchSignInMethodsForEmail,
 } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-auth.js";
 import {
   getDatabase,
