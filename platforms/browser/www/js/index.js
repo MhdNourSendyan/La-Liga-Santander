@@ -1,4 +1,4 @@
-// Importar funciones
+// Importar las funciones necesarias de firebase.
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
 import {
   getAuth,
@@ -100,7 +100,6 @@ function onDeviceReady() {
       });
   }
 }
-
 // INICIO DE SESIÓN CON GITHUB
 // Se selecciona el botón de Github
 const githubButton = document.querySelector("#githubLogin");
@@ -138,7 +137,7 @@ githubButton.addEventListener("click", (e) => {
     })
     .catch((error) => {
       // Se muestra un modal de error en caso de que ocurra un error durante la autenticación
-      lanzarModal(error);
+      console.log(error);
     });
 });
 // REGISTRARSE CON CORREO Y CONTRASEÑA
@@ -194,8 +193,8 @@ signUpForm.addEventListener("submit", (e) => {
         lanzarModal("Correo inválido");
       } else if (error.code === "auth/weak-password") {
         lanzarModal("Contraseña débil");
-      } else if (error.code) {
-        lanzarModal("Otro error!!!");
+      } else {
+        console.log(error);
       }
     });
 });
@@ -254,8 +253,37 @@ signInForm.addEventListener("submit", (e) => {
       }
       // En cualquier otro caso, lanza un modal con el mensaje "Otro error!!!"
       else {
-        lanzarModal("Otro error!!!");
+        console.log(error);
       }
+    });
+});
+// LOGOUT
+// Se selecciona el botón de logout
+const logout = document.querySelector("#logout");
+// Añade un evento de clic al botón de logout
+logout.addEventListener("click", (e) => {
+  // Llama a la función signOut() y devuelve una promesa
+  signOut(auth)
+    // Si la promesa se resuelve correctamente, ejecuta el siguiente código
+    .then(() => {
+      // Se muestran las opciones de inicio de sesión y se oculta la opción de logout.
+      const pageLogin = document.querySelectorAll("#page-login li");
+      pageLogin[0].classList.remove("d-none");
+      pageLogin[1].classList.remove("d-none");
+      pageLogin[2].classList.add("d-none");
+      // Oculta la sección de datos y muestra la sección bienvenida
+      const pageWelcome = document.getElementById("page-main-info");
+      pageWelcome.classList.remove("d-none");
+      pageWelcome.classList.add("d-block");
+      const pageMain = document.getElementById("page-main");
+      pageMain.classList.remove("d-block");
+      pageMain.classList.add("d-none");
+      const footer = document.getElementById("footer");
+      footer.classList.add("fixed-bottom");
+    })
+    // Si la promesa se rechaza, ejecuta el siguiente código
+    .catch((error) => {
+      console.log(error);
     });
 });
 // IMPRIMIR LOS EQUPOS DESDE LA BASE DE DATOS
@@ -289,43 +317,44 @@ function getClasificacionEquipos() {
     });
   }
 }
+// Función para pintar las celdas de la tabla
 function pintarCelda() {
+  // Obtener la tabla y su cuerpo
   const table = document.querySelector("#myTable");
   const tableBody = table.querySelector("tbody");
-
   // Obtener todas las filas de la tabla
   let filas = tableBody.getElementsByTagName("tr");
   filas = Array.from(filas);
-
   // Iterar por cada fila
   for (let i = 0; i < filas.length; i++) {
     let celdas;
+    // Si es una de las primeras cuatro filas
     if (i <= 3) {
-      // Obtener las primeras cuatro celdas de la fila
+      // Obtener las primeras dos celdas de la fila y añadirles la clase "blue"
       celdas = filas[i].getElementsByTagName("td");
       celdas = Array.from(celdas).slice(0, 2);
       celdas[0].classList.add("blue");
       celdas[1].classList.add("blue");
     } else if (i === 4) {
-      // Obtener la primera celda de la fila 5
+      // Si es la quinta fila, obtener las primeras dos celdas y añadirles la clase "yellow"
       celdas = filas[i].getElementsByTagName("td");
       celdas = Array.from(celdas).slice(0, 2);
       celdas[0].classList.add("yellow");
       celdas[1].classList.add("yellow");
     } else if (i === 5) {
-      // Obtener la primera celda de la fila 6
+      // Si es la sexta fila, obtener las primeras dos celdas y añadirles la clase "green"
       celdas = filas[i].getElementsByTagName("td");
       celdas = Array.from(celdas).slice(0, 2);
       celdas[0].classList.add("green");
       celdas[1].classList.add("green");
     } else if (i >= filas.length - 3) {
-      // Obtener la primera celda de las últimas tres filas
+      // Si es una de las últimas tres filas, obtener las primeras dos celdas y añadirles la clase "red"
       celdas = filas[i].getElementsByTagName("td");
       celdas = Array.from(celdas).slice(0, 2);
       celdas[0].classList.add("red");
       celdas[1].classList.add("red");
     } else {
-      // Remover la clase "bg-danger" de las demás celdas
+      // Si no cumple con las condiciones anteriores, remover la clase "red" de las primeras dos celdas
       celdas = filas[i].getElementsByTagName("td");
       celdas = Array.from(celdas).slice(0, 2);
       celdas[0].classList.remove("red");
@@ -333,60 +362,30 @@ function pintarCelda() {
     }
   }
 }
-
 // MOSTRAR UN MODAL
+// Esta función recibe un parámetro llamado "texto" que será el contenido que se mostrará en el cuerpo del modal.
 function lanzarModal(texto) {
   // Crear el elemento del modal
   let modal = document.createElement("div");
   modal.classList.add("modal", "fade");
-
   // Crear el diálogo del modal
   let dialog = document.createElement("div");
   dialog.classList.add("modal-dialog");
-
   // Crear el contenido del diálogo del modal
   let content = document.createElement("div");
   content.classList.add("modal-content");
   content.classList.add("bg-danger");
   content.classList.add("text-light");
-
   // Crear el cuerpo del modal con el texto que se le pasó como parámetro
   let body = document.createElement("div");
   body.classList.add("modal-body");
   body.innerHTML = texto;
-
   // Agregar el encabezado y el cuerpo al contenido del modal
   content.appendChild(body);
-
   // Agregar el contenido al diálogo del modal
   dialog.appendChild(content);
-
   // Agregar el diálogo al modal
   modal.appendChild(dialog);
-
   // Mostrar el modal
   $(modal).modal("show");
 }
-
-// LOGOUT
-const logout = document.querySelector("#logout");
-logout.addEventListener("click", async (e) => {
-  e.preventDefault();
-  try {
-    await signOut(auth);
-    const pageLogin = document.querySelectorAll("#page-login li");
-    pageLogin[0].classList.remove("d-none");
-    pageLogin[1].classList.remove("d-none");
-    pageLogin[2].classList.add("d-none");
-    const pageWelcome = document.getElementById("page-main-info");
-    pageWelcome.classList.remove("d-none");
-    pageWelcome.classList.add("d-block");
-    const pageMain = document.getElementById("page-main");
-    pageMain.classList.remove("d-block");
-    pageMain.classList.add("d-none");
-    const footer = document.getElementById("footer");
-    footer.classList.add("fixed-bottom");
-  } catch (error) {
-    console.log(error);
-  }
-});
