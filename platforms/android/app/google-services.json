@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "643741675250",
+    "firebase_url": "https://la-liga-santander-0-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "la-liga-santander-0",
+    "storage_bucket": "la-liga-santander-0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:643741675250:android:3ea640329aca798850ea6b",
+        "android_client_info": {
+          "package_name": "com.La_Liga_Santander"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "643741675250-moa87qhqr2bvjgjq3h3uvfn6ubij4ctu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.La_Liga_Santander",
+            "certificate_hash": "1f68f6f1ce2821f8156c32ff1eaaf81fd50a52d7"
+          }
+        },
+        {
+          "client_id": "643741675250-79rqejnj109jhub22mu7g71db0qqbud6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCIbViZO4InNB0jO4KzAuZ_ltyewS8Abuo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "643741675250-2ii3mloj29qposkp9gthdv6a976j1ghs.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

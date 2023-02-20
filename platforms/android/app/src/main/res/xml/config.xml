@@ -8,5 +8,13 @@
     <content src="index.html" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
+    <unversal-links>
+        <host name="laligasantander.page.link" scheme="https" />
+        <host name="la-liga-santander-0.firebaseapp.com" scheme="https">
+            <path url="/__/auth/callback" />
+        </host>
+    </unversal-links>
+    <allow-intent href="market:*" />
     <preference name="loglevel" value="DEBUG" />
+    <preference name="AndroidLaunchMode" value="singleTask" />
 </widget>
